@@ -44,9 +44,16 @@ function updateDOM(providedData = data) {
   providedData.forEach((person) => {
     const element = document.createElement("div");
     element.classList.add("person");
-    element.innerHTML = `<strong>${person.name}</strong> ${person.money}`;
+    element.innerHTML = `<strong>${person.name}</strong> ${formatMoney(
+      person.money,
+    )}`;
 
     // Insert into DOM
     main.appendChild(element);
   });
+}
+
+// format number as money
+function formatMoney(number) {
+  return "$" + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 }
